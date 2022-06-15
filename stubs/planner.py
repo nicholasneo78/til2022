@@ -2,6 +2,7 @@ from queue import PriorityQueue
 from typing import List, Tuple, TypeVar, Dict
 from tilsdk.localization import *
 import heapq
+from a_star_algorithm import execute_astar
 
 T = TypeVar('T')
 
@@ -72,7 +73,7 @@ class Planner:
         path = self.plan_grid(self.map.real_to_grid(start), self.map.real_to_grid(goal))
         return [self.map.grid_to_real(wp) for wp in path]
 
-    def plan_grid(self, start:GridLocation, goal:GridLocation) -> List[GridLocation]:
+    def plan_grid(self, arena:SignedDistanceGrid, start:GridLocation, goal:GridLocation) -> List[GridLocation]:
         '''Plan in grid coordinates.
         
         Raises NoPathFileException path is not found.
@@ -80,6 +81,7 @@ class Planner:
         ----------
         start: GridLocation
             Starting location.
+
         goal: GridLocation
             Goal location.
         
@@ -93,6 +95,9 @@ class Planner:
             raise RuntimeError('Planner map is not initialized.')
 
         # TODO: Participant to complete
+        # A* algorithm
+        execute_astar(arena, start, goal)
+
         pass
 
     def reconstruct_path(self,

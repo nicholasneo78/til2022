@@ -12,7 +12,7 @@ class CVService:
         '''
 
         # TODO: Participant to complete.
-        pass
+        self.model_dir = model_dir
 
     def targets_from_image(self, img) -> List[DetectedObject]:
         '''Process image and return targets.

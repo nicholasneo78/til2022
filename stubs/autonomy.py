@@ -41,6 +41,7 @@ def main():
 
     # Initialize planner
     map_:SignedDistanceGrid = loc_service.get_map()
+    print(map_)
     # TODO: process map?
     planner = Planner(map_, sdf_weight=0.5)
 
@@ -55,9 +56,13 @@ def main():
     while True:
         # Get new data
         pose, clues = loc_service.get_pose()
+        print(pose, clues)
         img = robot.camera.read_cv2_image(strategy='newest')
         
         # TODO: Participant to complete.
+        # pass the img to cv model
+        classes = cv_service.targets_from_image(img)
+
         pass
 
     robot.chassis.drive_speed(x=0.0, y=0.0, z=0.0)  # set stop for safety

@@ -57,11 +57,16 @@ def main():
         # Get new data
         pose, clues = loc_service.get_pose()
         print(pose, clues)
+
+        locations_from_clue = nlp_service.locations_from_clues(clues)
+        print(locations_from_clue)
+
         img = robot.camera.read_cv2_image(strategy='newest')
         
         # TODO: Participant to complete.
         # pass the img to cv model
-        classes = cv_service.targets_from_image(img)
+        classes_from_cv = cv_service.targets_from_image(img)
+        print(classes_from_cv)
 
         pass
 

@@ -10,6 +10,7 @@ from robomaster.robot import Robot                              # Use this for r
 from cv_service import CVService, MockCVService
 from nlp_service import NLPService
 from planner import Planner
+from a_star_algorithm import execute_astar
 
 # Setup logging in a nice readable format
 logging.basicConfig(level=logging.INFO,
@@ -32,7 +33,7 @@ def main():
     loc_service = LocalizationService(host='localhost', port=5566)
     rep_service = ReportingService(host='localhost', port=5501)
     robot = Robot()
-    robot.initialize(conn_type="sta")
+    robot.initialize(conn_type="sta", sn="3JKDH2T001F8KY")
     robot.camera.start_video_stream(display=False, resolution='720p')
 
     # Start the run

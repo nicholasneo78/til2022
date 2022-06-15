@@ -34,7 +34,7 @@ class NLPService:
         # TODO: Participant to complete.
 
         # initialise the pred list
-        emotion_list = []
+        #emotion_list = []
 
         # initialise the locations list to store the dictionary of clue location if audio is classified under "distressed"
         locations = []

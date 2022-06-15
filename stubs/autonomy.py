@@ -61,6 +61,8 @@ def main():
         locations_from_clue = nlp_service.locations_from_clues(clues)
         print(locations_from_clue)
 
+        # after detection of the location, move the damn robot to the clue spot then perform obj detection
+
         img = robot.camera.read_cv2_image(strategy='newest')
         
         # TODO: Participant to complete.

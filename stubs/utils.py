@@ -1,4 +1,5 @@
 import base64
+import numpy as np
 
 def decode_str(string):
 
@@ -21,3 +22,12 @@ def decode_str(string):
     message = message_bytes.decode('ascii')
 
     return message
+
+def convert_arena(arena, toList = True):
+    result = np.where(arena <= 0, 1, 0)
+
+    if toList:
+        return result.tolist()
+    
+    else:
+        return result

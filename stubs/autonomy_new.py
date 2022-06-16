@@ -22,8 +22,9 @@ logging.basicConfig(level=logging.INFO,
 REACHED_THRESHOLD_M = 0.3   # TODO: Participant may tune.
 ANGLE_THRESHOLD_DEG = 20.0  # TODO: Participant may tune.
 ROBOT_RADIUS_M = 0.17       # TODO: Participant may tune.
-NLP_MODEL_DIR = '/home/dh/Downloads/saved_model_base-wav2vec2_large_xlsr_en_ser_ep-10_lr-5e-05_decay-1e-05_data-TIL_RAV_E1_E2_99' # TODO: Participant to fill in.
-CV_MODEL_DIR = '/home/dh/Downloads/yolov5l_img-1024_bs-8_ep-12_E1_E2_last.pt' # TODO: Participant to fill in.
+
+NLP_MODEL_DIR = '' # TODO: Participant to fill in.
+CV_MODEL_DIR = 'yolov5l_img-1024_bs-8_ep-12_E1_E2_last.pt' # TODO: Participant to fill in.
 
 # Convenience function to update locations of interest.
 def update_locations(old:List[RealLocation], new:List[RealLocation]) -> None:
@@ -42,7 +43,7 @@ def main():
     loc_service = LocalizationService(host='192.168.20.56', port=5521)
     rep_service = ReportingService(host='localhost', port=5501)
     robot = Robot()
-    robot.initialize(conn_type="sta")
+    robot.initialize(conn_type="sta", sn="3JKDH2T0014VYK")
     robot.camera.start_video_stream(display=False, resolution='720p')
 
     # # Start the run
@@ -82,7 +83,7 @@ def main():
         img = robot.camera.read_cv2_image(strategy='newest')
         
         if not pose:
-            # now new data, continue to next iteration.
+            # no new data, continue to next iteration.
             continue
 
         # Filter out clues that were seen before
@@ -109,7 +110,9 @@ def main():
                 logging.getLogger('Main').info('No more locations of interest.')
                 # TODO: You ran out of LOIs. You could perform and random search for new
                 # clues or targets
-                
+
+
+
                 break
             
             else:
@@ -174,6 +177,8 @@ def main():
 
                 # TODO: Perform search behaviour? Participant to complete.
                 
+
+
                 continue
 
     robot.chassis.drive_speed(x=0.0, y=0.0, z=0.0)  # set stop for safety

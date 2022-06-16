@@ -6,18 +6,26 @@ from PIL import Image
 import torch
 
 class InferenceCV:
-    def __init__(self, model_path, img, img_width, img_height):
+    def __init__(self, model_path, img, img_width, img_height, img_is_pixel=True):
         self.model_path = model_path
         self.img = img
         self.img_width = img_width
         self.img_height = img_height
+        self.img_is_pixel = img_is_pixel
 
     def inference(self):
-        model = torch.hub.load('ultralytics/yolov5', 'custom', path=self.model_path, force_reload=False)
+        model = torch.hub.load('../yolov5/', 'custom', path=self.model_path, force_reload=False, source='local')
 
-        results = model(self.img)
+        # self.img is not an array of pixels but an img path to an image
+        if not self.img_is_pixel:
+            process = cv2.imread(self.img)
+            results = model(process)
 
-        labels, cord_thres = results.xyxyn[0][:, -1], results.xyxyn[0][:, :-1]
+        # self.img is an array of pixels
+        else:
+            results = model(self.img)
+        
+        labels, cord_thres = results.xyxyn[0][:, -1].tolist(), results.xyxyn[0][:, :-1]
 
         # initialise a list to store each bbox details
         label_coord_list = []
@@ -30,17 +38,24 @@ class InferenceCV:
             y_end = results.xyxyn[0][:, :-1][idx].tolist()[3]
 
             # get x, y, w, h
-            x = self.img_width*(x_end+x_start)/2
-            y = self.img_height*(y_end+y_start)/2
-            w = self.img_width*(x_end-x_start)
-            h = self.img_height*(y_end-y_start)
+            x = round(self.img_width*(x_end+x_start)/2, 4)
+            y = round(self.img_height*(y_end+y_start)/2, 4)
+            w = round(self.img_width*(x_end-x_start), 4)
+            h = round(self.img_height*(y_end-y_start), 4)
 
-            label_coord = [labels, x, y, w, h]
+            # according to the competition where '1' is fallen and '0' is standing
+            if str(int(labels[idx])) == '1':
+                relabel = '1'
+            else:
+                relabel = '0'
+
+            label_coord = [relabel, x, y, w, h]
             label_coord_list.append(label_coord)
 
-            results.show()
+        # to show the image with the bbox
+        # results.show()
 
-            return label_coord_list
+        return label_coord_list
 
     def __call__(self):
         return self.inference()
@@ -48,23 +63,8 @@ class InferenceCV:
 infer = InferenceCV(model_path='yolov5l_img-1024_bs-8_ep-12_E1_E2_last.pt', 
                     img='/home/daniel/Desktop/til2022/data/imgs/1.jpg', 
                     img_width=1280,
-                    img_height=720)
+                    img_height=720,
+                    img_is_pixel=False)
 
 get_coords = infer()
 print(get_coords)
-
-# print(labels)
-# print()
-# print(cord_thres)
-# print()
-# print(results)
-# print(results.xyxyn[0][:, :-1][1].tolist())
-
-
-
-
-
-# # print(x, y, w, h, labels.tolist()[0])
-# print(labels, cord_thres)
-
-# results.show()

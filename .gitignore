@@ -129,3 +129,4 @@ dmypy.json
 *.pt
 
 saved_model_base-wav2vec2_large_xlsr_en_ser_ep-10_lr-5e-05_decay-1e-05_data-TIL_RAV_E1_E2_99/
+yolov5/

@@ -29,7 +29,8 @@ def main():
     # Initialize services
     cv_service = CVService(model_dir=CV_MODEL_DIR)
     # cv_service = MockCVService(model_dir=CV_MODEL_DIR)
-    nlp_service = NLPService(model_dir=NLP_MODEL_DIR)
+    # nlp_service = NLPService(model_dir=NLP_MODEL_DIR)
+    nlp_service = NLPService()
     loc_service = LocalizationService(host='192.168.20.56', port=5521)
     rep_service = ReportingService(host='localhost', port=5501)
     robot = Robot()

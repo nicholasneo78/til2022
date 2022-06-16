@@ -256,9 +256,9 @@ class Evaluation:
         return pred_ids[0], emotion
 
 
-# start = time.time()
-# e = Evaluation(audio_file='test5.wav', saved_model_dir='saved_model_base-wav2vec2_large_xlsr_en_ser_ep-10_lr-5e-05_decay-1e-05_data-TIL_RAV_E1_E2_99/')
-# print(e.predict())
-# end = time.time()
+start = time.time()
+e = Evaluation(audio_file='test5.wav', saved_model_dir='saved_model_base-wav2vec2_large_xlsr_en_ser_ep-10_lr-5e-05_decay-1e-05_data-TIL_RAV_E1_E2_99/')
+print(e.predict())
+end = time.time()
 
-# print(end-start)
+print(end-start)

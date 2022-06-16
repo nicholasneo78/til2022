@@ -24,6 +24,22 @@ def decode_str(string):
     return message
 
 def convert_arena(arena, toList = True):
+
+    '''
+    Parameters
+    ----------
+    arena : numpy array
+        Original encoded string in base64 format
+
+    toList : boolean
+        
+
+    Returns
+    -------
+    result : str
+        Decoded string
+    '''
+
     result = np.where(arena <= 0, 1, 0)
 
     if toList:

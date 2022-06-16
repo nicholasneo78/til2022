@@ -87,14 +87,14 @@ def main():
 
         # Filter out clues that were seen before
         clues = list(filter(new_clues, clues))
-        print("LOL ", clues)
+        print("all clues ", clues)
         
         # Process clues using NLP and determine any new locations of interest
         if clues:
             new_lois = nlp_service.locations_from_clues(clues)
             update_locations(lois, new_lois)
             seen_clues.update([c[0] for c in clues])
-            print("clues ", seen_clues)
+            print("seen clues ", seen_clues)
 
         # Process image and detect targets
         targets = cv_service.targets_from_image(img)
@@ -109,7 +109,10 @@ def main():
                 logging.getLogger('Main').info('No more locations of interest.')
                 # TODO: You ran out of LOIs. You could perform and random search for new
                 # clues or targets
+
+
                 break
+            
             else:
                 # Get new LOI
                 lois.sort(key=lambda l: euclidean_distance(l, pose), reverse=True)

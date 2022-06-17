@@ -112,8 +112,7 @@ def main():
                 # TODO: You ran out of LOIs. You could perform and random search for new
                 # clues or targets
                 
-
-
+                check_unexplored_grid_locations(explored_grids)
                 break
             
             else:

@@ -64,6 +64,7 @@ def main():
     path:List[RealLocation] = []
     lois:List[RealLocation] = []
     curr_wp:RealLocation = None
+    explored_grids:List[RealLocation] = []
 
     # Initialize tracker
     # TODO: Participant to tune PID controller values.
@@ -124,9 +125,14 @@ def main():
                 # Plan a path to the new LOI
                 logging.getLogger('Main').info('Planning path to: {}'.format(curr_loi))
                 path = planner.plan(pose[:2], curr_loi)
+
+                # Add explored path of coordinates into explored coordinates
+                explored_grids += path
+
                 path.reverse() # reverse so closest wp is last so that pop() is cheap
                 curr_wp = None
                 logging.getLogger('Main').info('Path planned.')
+        
         else:
             # There is a current LOI objective.
             # Continue with navigation along current path.

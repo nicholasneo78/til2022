@@ -28,6 +28,8 @@ if __name__ == '__main__':
     # 左移 0.6米
     ep_chassis.move(x=0, y=-y_val, z=0, xy_speed=0.7).wait_for_completed()
 
+     ep_chassis.move(x=0, y=-y_val, z=0, xy_speed=0.7).wait_for_completed()
+
     # 右移 0.6米
     ep_chassis.move(x=0, y=y_val, z=0, xy_speed=0.7).wait_for_completed()
     img = ep_camera.read_cv2_image(strategy="newest")

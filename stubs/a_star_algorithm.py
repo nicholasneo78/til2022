@@ -15,9 +15,38 @@ class Node():
     def __eq__(self, other):
         return self.position == other.position
 
-
 def astar(maze, start, end):
-    """Returns a list of tuples as a path from the given start to the given end in the given maze"""
+    """
+    Returns a list of tuples as a path from the given start to the given end in the given maze
+    
+    Parameters
+    ----------
+    arena : list
+        2D list of the arena, with 1 representing wall and 0 representing empty space
+        
+        For example:
+        arena = [[0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+                 [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+                 [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+                 [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+                 [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                 [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+                 [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+                 [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+    
+    start : tuple
+        Tuple with 2 values to indicate the x and y values of the arena
+
+    end : tuple
+        Tuple with 2 values to indicate the x and y values of the arena
+
+    Returns
+    -------
+    path : list
+        List of tuples on the path to take to travel from the start to end coordinates
+    """
 
     # Create start and end node
     start_node = Node(None, start)
@@ -97,39 +126,3 @@ def astar(maze, start, end):
 
             # Add the child to the open list
             open_list.append(child)
-
-
-def execute_astar(arena, start, end):
-
-    '''
-    Parameters
-    ----------
-    arena : list
-        2D list of the arena, with 1 representing wall and 0 representing empty space
-        
-        For example:
-        arena = [[0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
-    
-    start : tuple
-        Tuple with 2 values to indicate the x and y values of the arena
-
-    end : tuple
-        Tuple with 2 values to indicate the x and y values of the arena
-
-    Returns
-    -------
-    path to take to travel from the start to end coordinates
-
-    '''
-
-    path = astar(arena, start, end)
-    print(path)

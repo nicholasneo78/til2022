@@ -32,12 +32,13 @@ def convert_arena(arena, toList = True):
         Original encoded string in base64 format
 
     toList : boolean
-        
+        Boolean variable to decide whether to convert the numpy array as a list or remain as an np array
+        If variable is true, convert the output to list, otherwise leave it as a numpy array
 
     Returns
     -------
-    result : str
-        Decoded string
+    result : numpy array or list
+        Output depends on the variable toList
     '''
 
     result = np.where(arena <= 0, 1, 0)

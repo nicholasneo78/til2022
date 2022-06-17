@@ -2,7 +2,7 @@ from queue import PriorityQueue
 from typing import List, Tuple, TypeVar, Dict
 from tilsdk.localization import *
 import heapq
-from a_star_algorithm import execute_astar
+from a_star_algorithm import astar
 
 T = TypeVar('T')
 
@@ -70,24 +70,25 @@ class Planner:
             List of RealLocation from start to goal.
         '''
 
-        path = self.plan_grid(self.map.real_to_grid(start), self.map.real_to_grid(goal))
+        path = self.plan_grid(self.map, self.map.real_to_grid(start), self.map.real_to_grid(goal))
         return [self.map.grid_to_real(wp) for wp in path]
 
     def plan_grid(self, arena:SignedDistanceGrid, start:GridLocation, goal:GridLocation) -> List[GridLocation]:
         '''Plan in grid coordinates.
         
         Raises NoPathFileException path is not found.
+
         Parameters
         ----------
-        start: GridLocation
+        start : GridLocation
             Starting location.
 
-        goal: GridLocation
+        goal : GridLocation
             Goal location.
         
         Returns
         -------
-        path
+        path : list
             List of GridLocation from start to goal.
         '''
 
@@ -95,10 +96,19 @@ class Planner:
             raise RuntimeError('Planner map is not initialized.')
 
         # TODO: Participant to complete
-        # A* algorithm
-        execute_astar(arena, start, goal)
 
-        pass
+        # A* algorithm
+        start_tuple = (start.x, start.y)
+        goal_tuple = (goal.x, goal.y)
+
+        path = astar(arena, start_tuple, goal_tuple)
+
+        path_new = []
+
+        for i in path:
+            path_new.apppend(GridLocation(i[0], i[1]))
+
+        return path_new
 
     def reconstruct_path(self,
                          came_from:Dict[GridLocation, GridLocation],
@@ -113,6 +123,7 @@ class Planner:
             Start location for path.
         goal: GridLocation
             Goal location for path.
+
         Returns
         -------
         path

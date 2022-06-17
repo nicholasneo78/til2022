@@ -52,8 +52,8 @@ def main():
     # Initialize planner
     map_:SignedDistanceGrid = loc_service.get_map()
     map_ = map_.dilated(1.5*ROBOT_RADIUS_M/map_.scale)
+    
     print(map_.grid.shape)
-
     print(convert_arena(map_.grid, False))
 
     planner = Planner(map_, sdf_weight=0.5)

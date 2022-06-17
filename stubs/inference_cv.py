@@ -45,9 +45,9 @@ class InferenceCV:
 
             # according to the competition where '1' is fallen and '0' is standing
             if str(int(labels[idx])) == '1':
-                relabel = '1'
+                relabel = 1
             else:
-                relabel = '0'
+                relabel = 0
 
             label_coord = [relabel, x, y, w, h]
             label_coord_list.append(label_coord)

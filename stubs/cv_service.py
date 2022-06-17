@@ -45,8 +45,11 @@ class CVService:
 
         detected_list = []
 
+        img_id = 0
+
         # store the bounding box
         for box in get_coords:
+            img_id += 1
             bbox = BoundingBox(box[1], box[2], box[3], box[4])
             obj = DetectedObject(img_id, box[0], bbox)
             detected_list.append(obj)

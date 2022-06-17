@@ -110,7 +110,7 @@ def main():
                 logging.getLogger('Main').info('No more locations of interest.')
                 # TODO: You ran out of LOIs. You could perform and random search for new
                 # clues or targets
-
+                
 
 
                 break

@@ -47,13 +47,14 @@ def main():
     robot.initialize(conn_type="sta", sn="3JKDH2T0014VYK")
     robot.camera.start_video_stream(display=False, resolution='720p')
 
-    # # Start the run
-    # rep_service.start_run()
+    # Start the run
+    rep_service.start_run()
 
     # Initialize planner
     map_:SignedDistanceGrid = loc_service.get_map()
     map_ = map_.dilated(1.5*ROBOT_RADIUS_M/map_.scale)
     
+    print("Arena:")
     print(map_.grid.shape)
     print(convert_arena(map_.grid, False))
 
@@ -185,8 +186,6 @@ def main():
                 curr_loi = None
 
                 # TODO: Perform search behaviour? Participant to complete.
-                
-
 
                 continue
 

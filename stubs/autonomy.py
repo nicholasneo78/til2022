@@ -10,7 +10,8 @@ from robomaster.robot import Robot                              # Use this for r
 from cv_service import CVService, MockCVService
 from nlp_service import NLPService
 from planner import Planner
-from a_star_algorithm import execute_astar
+
+import time
 
 # Setup logging in a nice readable format
 logging.basicConfig(level=logging.INFO,
@@ -67,14 +68,17 @@ def main():
 
         # after detection of the location, move the damn robot to the clue spot then perform obj detection
 
-        img = robot.camera.read_cv2_image(strategy='newest')
+        img = robot.camera.read_cv2_image(strategy='newest')        
         
         # TODO: Participant to complete.
         # pass the img to cv model
         classes_from_cv = cv_service.targets_from_image(img)
         print('hehe ', classes_from_cv)
 
-        pass
+        # perform time.sleep to make sure the cv service is ready for the prediction
+        time.sleep(4)
+
+        # pass
 
     robot.chassis.drive_speed(x=0.0, y=0.0, z=0.0)  # set stop for safety
     logging.getLogger('Main').info('Mission Terminated.')

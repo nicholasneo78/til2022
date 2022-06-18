@@ -11,6 +11,7 @@ from cv_service import CVService, MockCVService
 from nlp_service import NLPService
 from planner import Planner
 from utils import *
+import time
 
 # Setup logging in a nice readable format
 logging.basicConfig(level=logging.INFO,
@@ -100,6 +101,9 @@ def main():
 
         # Process image and detect targets
         targets = cv_service.targets_from_image(img)
+
+        # perform time.sleep to make sure the cv service is ready for the prediction
+        time.sleep(4)
 
         # Submit targets
         if targets:

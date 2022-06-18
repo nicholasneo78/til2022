@@ -10,7 +10,7 @@ from robomaster.robot import Robot                             # Use this for re
 from cv_service import CVService, MockCVService
 from nlp_service import NLPService
 from planner import Planner
-from utils import *
+# from utils import *
 
 # Setup logging in a nice readable format
 logging.basicConfig(level=logging.INFO,
@@ -40,7 +40,7 @@ def main():
     cv_service = CVService(model_dir=CV_MODEL_DIR)
 
     robot = Robot()
-    robot.initialize(conn_type="sta", sn="3JKDH2T0014VYK")
+    robot.initialize(conn_type="sta", sn="3JKDH2T001U0H4")
     robot.camera.start_video_stream(display=False, resolution='720p')
 
     img = robot.camera.read_cv2_image(strategy='newest')

@@ -60,11 +60,11 @@ class InferenceCV:
     def __call__(self):
         return self.inference()
 
-infer = InferenceCV(model_path='yolov5l_img-1024_bs-8_ep-12_E1_E2_last.pt', 
-                    img='/home/daniel/Desktop/til2022/data/imgs/1.jpg', 
-                    img_width=1280,
-                    img_height=720,
-                    img_is_pixel=False)
+# infer = InferenceCV(model_path='yolov5l_img-1024_bs-8_ep-12_E1_E2_last.pt', 
+#                     img='/home/daniel/Desktop/til2022/data/imgs/1.jpg', 
+#                     img_width=1280,
+#                     img_height=720,
+#                     img_is_pixel=False)
 
-get_coords = infer()
-print(get_coords)
+# get_coords = infer()
+# print(get_coords)

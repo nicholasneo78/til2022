@@ -22,8 +22,8 @@ logging.basicConfig(level=logging.INFO,
 REACHED_THRESHOLD_M = 0.3   # TODO: Participant may tune.
 ANGLE_THRESHOLD_DEG = 20.0  # TODO: Participant may tune.
 ROBOT_RADIUS_M = 0.17       # TODO: Participant may tune.
-NLP_MODEL_DIR = '/home/dh/Downloads/saved_model_base-wav2vec2_large_xlsr_en_ser_ep-10_lr-5e-05_decay-1e-05_data-TIL_RAV_E1_E2_99'          # TODO: Participant to fill in.
-CV_MODEL_DIR = '/home/dh/Downloads/yolov5l_img-1024_bs-8_ep-12_E1_E2_last.pt'           # TODO: Participant to fill in.
+# NLP_MODEL_DIR = '/home/dh/Downloads/saved_model_base-wav2vec2_large_xlsr_en_ser_ep-10_lr-5e-05_decay-1e-05_data-TIL_RAV_E1_E2_99'          # TODO: Participant to fill in.
+CV_MODEL_DIR = 'yolov5l_img-1024_bs-8_ep-12_E1_E2_last.pt'          # TODO: Participant to fill in.
 
 def main():
     # Initialize services

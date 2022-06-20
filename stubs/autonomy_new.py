@@ -25,6 +25,7 @@ ANGLE_THRESHOLD_DEG = 20.0  # TODO: Participant may tune.
 ROBOT_RADIUS_M = 0.17       # TODO: Participant may tune.
 
 NLP_MODEL_DIR = '' # TODO: Participant to fill in.
+# NLP_MODEL_DIR = 'saved_model_base-wav2vec2_large_xlsr_en_ser_ep-10_lr-5e-05_decay-1e-05_data-TIL_RAV_E1_E2_99'
 CV_MODEL_DIR = 'yolov5l_img-1024_bs-8_ep-12_E1_E2_last.pt' # TODO: Participant to fill in.
 
 # Convenience function to update locations of interest.

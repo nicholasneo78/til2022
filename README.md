@@ -1,4 +1,6 @@
-# til-final
+# DSTA BrainHack til2022 by Team 200 Success
+
+## til-final
 
 SDK, simulator and documentation for TIL 2022 Robotics
 Challenge.
@@ -32,7 +34,9 @@ sphinx-build -b html docs/source docs/build
 
 Access the docs at `docs/build/index.html`.
 
+**Note: Documentation has been built in this repository.**
+
 ## Using the til-simulator
 
-- Run the simulator with `til-simulator -c config/sim_config.yml`
+- Run the simulator by running the command `til-simulator -c config/sim_config.yml` in terminal
 - Open another instance of terminal and run `autonomy_new.py`

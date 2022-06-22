@@ -31,3 +31,8 @@ sphinx-build -b html docs/source docs/build
 ```
 
 Access the docs at `docs/build/index.html`.
+
+## Using the til-simulator
+
+- Run the simulator with `til-simulator -c config/sim_config.yml`
+- Open another instance of terminal and run `autonomy_new.py`

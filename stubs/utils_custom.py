@@ -48,8 +48,3 @@ def convert_arena(arena, toList = True):
     
     else:
         return result
-
-def check_unexplored_grid_locations(arena, explored_grids):
-    
-    print("Checking the unexplored...")
-    print(explored_grids)

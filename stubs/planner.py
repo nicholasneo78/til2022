@@ -101,7 +101,7 @@ class Planner:
         start_tuple = (start.x, start.y)
         goal_tuple = (goal.x, goal.y)
 
-        path = astar(arena, start_tuple, goal_tuple)
+        path = astar(arena.grid, start_tuple, goal_tuple)
 
         path_new = []
 

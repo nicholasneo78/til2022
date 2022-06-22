@@ -10,7 +10,7 @@ from robomaster.robot import Robot                             # Use this for re
 from cv_service import CVService, MockCVService
 from nlp_service import NLPService
 from planner import Planner
-from utils import *
+from utils_custom import *
 import time
 
 # Setup logging in a nice readable format
@@ -41,7 +41,7 @@ def main():
     # Initialize services
     cv_service = CVService(model_dir=CV_MODEL_DIR)
     # cv_service = MockCVService(model_dir=CV_MODEL_DIR)
-    nlp_service = NLPService(model_dir=NLP_MODEL_DIR)
+    nlp_service = NLPService()
     loc_service = LocalizationService(host='192.168.20.56', port=5521)
     rep_service = ReportingService(host='localhost', port=5501)
     robot = Robot()
@@ -117,8 +117,6 @@ def main():
                 logging.getLogger('Main').info('No more locations of interest.')
                 # TODO: You ran out of LOIs. You could perform and random search for new
                 # clues or targets
-                
-                check_unexplored_grid_locations(explored_grids)
                 break
             
             else:
